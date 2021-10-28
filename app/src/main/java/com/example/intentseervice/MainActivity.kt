@@ -1,6 +1,8 @@
 package com.example.intentseervice
 
+import android.content.BroadcastReceiver
 import android.content.Intent
+import android.content.IntentFilter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -14,7 +16,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var serviceTextView: TextView
     private lateinit var editText: EditText
     private lateinit var sendButton: Button
-
+    private lateinit var receiver: AirplaneModeChangedReceiver
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,12 +28,20 @@ class MainActivity : AppCompatActivity() {
         editText = findViewById(R.id.editText)
         sendButton = findViewById(R.id.send_data )
 
+        receiver = AirplaneModeChangedReceiver()
+
+        IntentFilter(Intent.ACTION_AIRPLANE_MODE_CHANGED).also {
+            registerReceiver(receiver, it)
+        }
+
 
         startButton.setOnClickListener{
-//            Intent(this, MyIntentService::class.java).also {
-//                startService(it)
-//                textView.text = "Intent service running"
-//            }
+            // For intentseervice
+            Intent(this, MyIntentService::class.java).also {
+                startService(it)
+                textView.text = "Intent service running"
+            }
+            //For service
             Intent(this, MyService::class.java).also {
                 startService(it)
                 serviceTextView.text = "Service running"
@@ -39,15 +49,17 @@ class MainActivity : AppCompatActivity() {
         }
 
         stopButton.setOnClickListener {
-//            MyIntentService.stopService()
-//            textView.text = "Service stopped"
-
+            //For intent service
+            MyIntentService.stopService()
+            textView.text = "Service stopped"
+            // For service
             Intent(this, MyService::class.java).also {
                 startService(it)
                 serviceTextView.text = "Service stopped"
             }
         }
 
+        //For sending data o service
         sendButton.setOnClickListener {
             Intent(this, MyService::class.java).also {
                 val text = editText.text.toString()
@@ -58,5 +70,10 @@ class MainActivity : AppCompatActivity() {
 
 
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        unregisterReceiver(receiver)
     }
 }
