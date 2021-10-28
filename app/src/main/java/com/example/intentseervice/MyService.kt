@@ -19,11 +19,11 @@ class MyService: Service() {
         }
 
 //        to create thread
-        Thread{
-            while(true) {
-
-            }
-        }.start()
+//        Thread{
+//            while(true) {
+//
+//            }
+//        }.start()
 
 //        without creating a separate thread, the code below freezes app
 //        while(true) {

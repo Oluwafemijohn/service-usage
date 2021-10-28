@@ -6,65 +6,107 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/start_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="80dp"
-        android:text="Start"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/stop_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="48dp"
-        android:text="Stop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="8dp"
+            >
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/start_button" />
 
-    <Button
-        android:id="@+id/send_data"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="21dp"
-        android:text="Send"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+            <Button
+                android:id="@+id/start_intent_service_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Start intent service"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <Button
+                android:id="@+id/stop_intent_service_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Stop intent service"
+                app:layout_constraintStart_toStartOf="@+id/start_intent_service_button"
+                app:layout_constraintTop_toBottomOf="@+id/start_intent_service_button" />
 
-    <TextView
-        android:id="@+id/service_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+            <Button
+                android:id="@+id/start_service_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="@+id/stop_intent_service_button"
+                app:layout_constraintTop_toBottomOf="@+id/stop_intent_service_button"
+                android:text="Start service" />
 
-        android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textview" />
+            <Button
+                android:id="@+id/stop_service_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="@+id/start_service_button"
+                app:layout_constraintTop_toBottomOf="@+id/start_service_button"
+                android:text="Stop service" />
+
+            <EditText
+                android:id="@+id/editText"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="36dp"
+                app:layout_constraintBottom_toBottomOf="@+id/send_data"
+                app:layout_constraintStart_toEndOf="@+id/send_data" />
+
+            <Button
+                android:id="@+id/send_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="Send"
+                app:layout_constraintStart_toStartOf="@+id/stop_service_button"
+                app:layout_constraintTop_toBottomOf="@+id/stop_service_button" />
+
+            <TextView
+                android:id="@+id/intent_service_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                app:layout_constraintBottom_toBottomOf="@+id/start_intent_service_button"
+                app:layout_constraintStart_toEndOf="@+id/start_intent_service_button"
+                tools:text="intent service" />
+
+            <TextView
+                android:id="@+id/service_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/start_service_button"
+                app:layout_constraintStart_toStartOf="@+id/intent_service_textview"
+                tools:text="service" />
+
+            <Button
+                android:id="@+id/start_job_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Start Job"
+                app:layout_constraintStart_toStartOf="@+id/send_data"
+                app:layout_constraintTop_toBottomOf="@+id/send_data" />
+
+            <Button
+                android:id="@+id/cancel_job_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cancel job"
+                app:layout_constraintStart_toStartOf="@+id/start_job_button"
+                app:layout_constraintTop_toBottomOf="@+id/start_job_button" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
