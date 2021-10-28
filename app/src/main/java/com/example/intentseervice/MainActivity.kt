@@ -93,6 +93,7 @@ class MainActivity : AppCompatActivity() {
         if (result == JobScheduler.RESULT_SUCCESS){
             Log.d(TAG, "Job scheduled")
         }else{
+
             Log.d(TAG, "Job scheduling failled")
         }
     }

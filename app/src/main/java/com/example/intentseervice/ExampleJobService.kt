@@ -2,26 +2,24 @@ package com.example.intentseervice
 
 import android.app.job.JobParameters
 import android.app.job.JobService
-import android.content.Context
+import android.os.Looper
 import android.util.Log
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 
-class ExampleJobService(content: Context):JobService() {
+class ExampleJobService():JobService() {
     private val TAG = "ExampleJob"
     private var jobCancelled: Boolean = false
     override fun onStartJob(params: JobParameters?): Boolean {
         Log.d(TAG, "onStartJob: ")
-        Toast.makeText(this, "Job started", Toast.LENGTH_SHORT).show()
         doBackgroundJob(params)
         return true
     }
 
     private fun doBackgroundJob(params: JobParameters?) {
         Thread{
+//            Looper.prepare()
             for (i in 0..10){
                 Log.d(TAG, "doBackgroundJob: $i")
-                Toast.makeText(this, "task $i ", Toast.LENGTH_SHORT).show()
                 try {
                     if (jobCancelled){
                         return@Thread
@@ -31,7 +29,7 @@ class ExampleJobService(content: Context):JobService() {
                     e.printStackTrace()
                 }
             }
-            Toast.makeText(this, "Job finished", Toast.LENGTH_SHORT).show()
+
             Log.d(TAG, "doBackgroundJob: Job finished")
             jobFinished(params, false)
         }.start()
